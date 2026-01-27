@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosette Dizon | Digital Marketing Specialist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a2e;
+            --accent: #e94560;
+            --secondary: #16213e;
+            --light: #f1f1f1;
+            --highlight: #0f3460;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' /%3E%3C/svg%3E");
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header/Hero Section */
+        header {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            background: linear-gradient(135deg, var(--light) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: rgba(241, 241, 241, 0.8);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-bottom: 3rem;
+            color: rgba(241, 241, 241, 0.7);
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(233, 69, 96, 0.4);
+        }
+
+        .decorative-circle {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(233, 69, 96, 0.15) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 8rem 0;
+            background: rgba(22, 33, 62, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--accent);
+            margin: 1rem auto;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            animation: fadeIn 0.8s ease-out backwards;
+        }
+
+        .skill-card:nth-child(1) { animation-delay: 0.1s; }
+        .skill-card:nth-child(2) { animation-delay: 0.2s; }
+        .skill-card:nth-child(3) { animation-delay: 0.3s; }
+        .skill-card:nth-child(4) { animation-delay: 0.4s; }
+        .skill-card:nth-child(5) { animation-delay: 0.5s; }
+        .skill-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent);
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .skill-card p {
+            color: rgba(241, 241, 241, 0.7);
+            font-size: 0.95rem;
+        }
+
+        /* Portfolio Section */
+        .portfolio-section {
+            padding: 8rem 0;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+
+        .portfolio-item:nth-child(1) { animation-delay: 0.1s; }
+        .portfolio-item:nth-child(2) { animation-delay: 0.2s; }
+        .portfolio-item:nth-child(3) { animation-delay: 0.3s; }
+        .portfolio-item:nth-child(4) { animation-delay: 0.4s; }
+
+        .portfolio-item:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 60px rgba(233, 69, 96, 0.3);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .portfolio-item:hover .portfolio-image {
+            transform: scale(1.05);
+        }
+
+        .portfolio-content {
+            padding: 2rem;
+        }
+
+        .portfolio-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .portfolio-content p {
+            color: rgba(241, 241, 241, 0.7);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .portfolio-tag {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(233, 69, 96, 0.2);
+            color: var(--accent);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Achievements Section */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .achievement-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+
+        .achievement-card:nth-child(1) { animation-delay: 0.1s; }
+        .achievement-card:nth-child(2) { animation-delay: 0.2s; }
+        .achievement-card:nth-child(3) { animation-delay: 0.3s; }
+        .achievement-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .achievement-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent);
+        }
+
+        .achievement-number {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-label {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .achievement-card p {
+            color: rgba(241, 241, 241, 0.7);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Documents Section */
+        .documents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .document-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .document-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent);
+        }
+
+        .document-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .document-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .document-card p {
+            color: rgba(241, 241, 241, 0.7);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .doc-link {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .doc-link:hover {
+            background: var(--light);
+            color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        /* Tools Section */
+        .tools-section {
+            padding: 8rem 0;
+            background: rgba(22, 33, 62, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .tool-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .tool-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            padding: 8rem 0;
+        }
+
+        .testimonial {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--accent);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 1s ease-out backwards;
+        }
+
+        .testimonial:nth-child(1) { animation-delay: 0.1s; }
+        .testimonial:nth-child(2) { animation-delay: 0.2s; }
+        .testimonial:nth-child(3) { animation-delay: 0.3s; }
+
+        .testimonial p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(241, 241, 241, 0.9);
+            font-style: italic;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 8rem 0;
+            background: rgba(22, 33, 62, 0.5);
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .contact-info {
+            font-size: 1.3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--light);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 0;
+            text-align: center;
+            background: var(--primary);
+            color: rgba(241, 241, 241, 0.6);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-50px) rotate(5deg);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .portfolio-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tools-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grain"></div>
+
+    <!-- Hero Section -->
+    <header>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Rosette Dizon</h1>
+                <p class="hero-subtitle">Digital Marketing Project Manager & Team Leader</p>
+                <p class="hero-description">
+                    Over a decade of expertise in digital marketing, project management, and team leadership. 
+                    Successfully led cross-functional teams from project launch to completion, delivering 
+                    measurable results through strategic planning, automation, and data-driven optimization.
+                </p>
+                <a href="#contact" class="cta-button">Let's Connect</a>
+            </div>
+            <div class="decorative-circle"></div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <h2 class="section-title">What I Do</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>🎯 Project Management</h3>
+                    <p>Led cross-functional teams and managed end-to-end project delivery. Coordinated with designers, video editors, and writers to ensure timely completion. Trained and managed Upwork contractors for research and data tasks.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>📧 Email Marketing</h3>
+                    <p>Executed automated email campaigns with <strong>23.86% click rate</strong> and delivered <strong>26,500+ emails</strong> with high engagement. Expert in campaign automation, segmentation, and A/B testing.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>🔍 Lead Generation</h3>
+                    <p>Built targeted lead lists across multiple industries supporting sales teams. Managed appointment setting and pre-qualified leads, contributing to increased conversion rates and pipeline growth.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>📱 Social Media Management</h3>
+                    <p>Created content strategy and managed LinkedIn optimization for recruitment clients, resulting in increased connection requests and engagement. Produced graphics, blogs, newsletters, and podcasts.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>📊 Data & Analytics</h3>
+                    <p>Maintained database accuracy in Salesforce with <strong>0 spam complaints</strong> across 26,500 email deliveries. Analyzed campaign metrics to optimize performance and provide actionable insights.</p>
+                </div>
+                <div class="skill-card">
+                    <h3>👥 Team Leadership</h3>
+                    <p>Served as <strong>Head of Demand Generation</strong> and <strong>Team Lead</strong>, coaching teams to meet performance metrics. Managed recruitment, training, and performance evaluations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section class="portfolio-section">
+        <div class="container">
+            <h2 class="section-title">Key Achievements</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-number">23.86%</div>
+                    <div class="achievement-label">Email Click Rate</div>
+                    <p>Achieved exceptional engagement with workflow campaigns, significantly above industry average of 2-3%</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">26,500+</div>
+                    <div class="achievement-label">Emails Delivered</div>
+                    <p>Successfully managed high-volume email campaigns with 50% open rate and zero spam complaints</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">12+ Years</div>
+                    <div class="achievement-label">Project Leadership</div>
+                    <p>Led demand generation team at Liveclicker/Campaign Monitor, managing contractors and executing automated campaigns</p>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-number">Multi-Touch</div>
+                    <div class="achievement-label">Campaign Strategy</div>
+                    <p>Designed and executed 10+ touch email sequences with strategic timing and personalization for maximum conversion</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio-section">
+        <div class="container">
+            <h2 class="section-title">Featured Work & Case Studies</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="/mnt/user-data/uploads/Tracking_sample.png" alt="Email Campaign Performance" class="portfolio-image">
+                    <div class="portfolio-content">
+                        <h3>High-Performance Email Campaigns</h3>
+                        <p><strong>Impact:</strong> Delivered 26,500 emails with 23.86% click rate and 50% open rate. Achieved 6,324 total clicks with 358 bounces and 173 unsubscribes, maintaining excellent list health.</p>
+                        <span class="portfolio-tag">Email Marketing</span>
+                        <span class="portfolio-tag">Analytics</span>
+                        <span class="portfolio-tag">Performance Tracking</span>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="/mnt/user-data/uploads/GHL_Campaign_3.png" alt="Budget Season Campaign Workflow" class="portfolio-image">
+                    <div class="portfolio-content">
+                        <h3>Marketing Automation Workflows</h3>
+                        <p><strong>Impact:</strong> Designed complex multi-step automation sequences using GoHighLevel. Managed triggers, delays, and conditional logic to nurture leads efficiently from initial contact to conversion.</p>
+                        <span class="portfolio-tag">Marketing Automation</span>
+                        <span class="portfolio-tag">GoHighLevel</span>
+                        <span class="portfolio-tag">Workflow Design</span>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="/mnt/user-data/uploads/GHL_Campaign_2.png" alt="PM Cold Outreach Campaign" class="portfolio-image">
+                    <div class="portfolio-content">
+                        <h3>Strategic Cold Outreach Campaigns</h3>
+                        <p><strong>Impact:</strong> Developed and managed response-driven cold outreach campaigns with sophisticated follow-up sequences and GPT integration for personalized messaging at scale.</p>
+                        <span class="portfolio-tag">Lead Generation</span>
+                        <span class="portfolio-tag">Automation</span>
+                        <span class="portfolio-tag">AI Integration</span>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="/mnt/user-data/uploads/Tracking_2.png" alt="Campaign Performance Dashboard" class="portfolio-image">
+                    <div class="portfolio-content">
+                        <h3>Data-Driven Campaign Optimization</h3>
+                        <p><strong>Impact:</strong> Monitored engagement metrics daily to identify trends and optimize send times, content, and targeting. Used insights to continually improve performance and ROI.</p>
+                        <span class="portfolio-tag">Analytics</span>
+                        <span class="portfolio-tag">Data Analysis</span>
+                        <span class="portfolio-tag">Optimization</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <section class="portfolio-section">
+        <div class="container">
+            <h2 class="section-title">Featured Work</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="/mnt/user-data/uploads/GHL_Campaign_3.png" alt="Email Campaign" class="portfolio-image">
+                    <div class="portfolio-content">
+                        <h3>Email Marketing Campaigns</h3>
+                        <p>Designed and executed multi-touch email campaigns with sophisticated automation workflows and performance tracking.</p>
+                        <span class="portfolio-tag">Email Marketing</span>
+                        <span class="portfolio-tag">Automation</span>
+                        <span class="portfolio-tag">GoHighLevel</span>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="/mnt/user-data/uploads/Tracking_sample.png" alt="Analytics Tracking" class="portfolio-image">
+                    <div class="portfolio-content">
+                        <h3>Campaign Analytics & Tracking</h3>
+                        <p>Comprehensive performance monitoring and data analysis to optimize campaign effectiveness and ROI.</p>
+                        <span class="portfolio-tag">Analytics</span>
+                        <span class="portfolio-tag">Performance Tracking</span>
+                        <span class="portfolio-tag">Data Analysis</span>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="/mnt/user-data/uploads/GHL_Campaign_2.png" alt="Workflow Campaign" class="portfolio-image">
+                    <div class="portfolio-content">
+                        <h3>Marketing Automation Workflows</h3>
+                        <p>Complex multi-step automation sequences designed to nurture leads and drive conversions through strategic touchpoints.</p>
+                        <span class="portfolio-tag">Marketing Automation</span>
+                        <span class="portfolio-tag">Lead Nurturing</span>
+                        <span class="portfolio-tag">Workflows</span>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="/mnt/user-data/uploads/Tracking_2.png" alt="Email Performance" class="portfolio-image">
+                    <div class="portfolio-content">
+                        <h3>Email Performance Optimization</h3>
+                        <p>Data-driven insights and continuous optimization resulting in improved open rates, click-through rates, and conversions.</p>
+                        <span class="portfolio-tag">Email Optimization</span>
+                        <span class="portfolio-tag">A/B Testing</span>
+                        <span class="portfolio-tag">Metrics</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Document Showcase Section -->
+    <section class="tools-section">
+        <div class="container">
+            <h2 class="section-title">Work Samples & Documents</h2>
+            <div class="documents-grid">
+                <div class="document-card">
+                    <div class="document-icon">📄</div>
+                    <h3>Professional Portfolio PDF</h3>
+                    <p>Comprehensive portfolio showcasing skills, work samples, and client testimonials</p>
+                    <a href="/mnt/user-data/uploads/Rosette_Dizon_Portfolio.pdf" target="_blank" class="doc-link">View Document</a>
+                </div>
+                <div class="document-card">
+                    <div class="document-icon">📊</div>
+                    <h3>Social Media Work Samples</h3>
+                    <p>LinkedIn content creation, graphic designs, blog posts, and analytics tracking for US-based staffing and HR companies</p>
+                    <a href="/mnt/user-data/uploads/RDizon__Digital_Marketing_-_Sample_of_Work_docx.pdf" target="_blank" class="doc-link">View Samples</a>
+                </div>
+                <div class="document-card">
+                    <div class="document-icon">📝</div>
+                    <h3>Professional Resume/CV</h3>
+                    <p>Detailed work history including Head of Demand Generation role at Liveclicker/Campaign Monitor</p>
+                    <a href="/mnt/user-data/uploads/RosetteDizon_CV1.pdf" target="_blank" class="doc-link">View Resume</a>
+                </div>
+                <div class="document-card">
+                    <div class="document-icon">✉️</div>
+                    <h3>Email Template Library</h3>
+                    <p>Extensive collection of multi-cycle email campaign templates with proven subject lines and timing strategies</p>
+                    <a href="/mnt/user-data/uploads/Email_Template_Lists_docx.pdf" target="_blank" class="doc-link">View Templates</a>
+                </div>
+                <div class="document-card">
+                    <div class="document-icon">📰</div>
+                    <h3>Newsletter Design</h3>
+                    <p>Necto Selection monthly newsletter covering construction industry updates and job opportunities</p>
+                    <a href="/mnt/user-data/uploads/Necto_Sept_2024_Newsletter.pdf" target="_blank" class="doc-link">View Newsletter</a>
+                </div>
+                <div class="document-card">
+                    <div class="document-icon">📖</div>
+                    <h3>Content Writing Sample</h3>
+                    <p>Comprehensive guide written for estimators exploring career opportunities in Birmingham, AL</p>
+                    <a href="/mnt/user-data/uploads/A_Comprehensive_Guide_to_Birmingham__AL_for_Estimators_Seeking_Career_Growth.pdf" target="_blank" class="doc-link">View Article</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section class="tools-section">
+        <div class="container">
+            <h2 class="section-title">Tools & Platforms</h2>
+            <div class="tools-grid">
+                <div class="tool-item">Microsoft 365</div>
+                <div class="tool-item">Google Workspace</div>
+                <div class="tool-item">Salesforce</div>
+                <div class="tool-item">GoHighLevel</div>
+                <div class="tool-item">Asana</div>
+                <div class="tool-item">Trello</div>
+                <div class="tool-item">Mailchimp</div>
+                <div class="tool-item">LinkedIn Sales Navigator</div>
+                <div class="tool-item">Zoom</div>
+                <div class="tool-item">Slack</div>
+                <div class="tool-item">Canva</div>
+                <div class="tool-item">CapCut</div>
+                <div class="tool-item">Webflow</div>
+                <div class="tool-item">ChatGPT</div>
+                <div class="tool-item">Claude</div>
+                <div class="tool-item">Apollo</div>
+                <div class="tool-item">ZoomInfo</div>
+                <div class="tool-item">Hunter</div>
+                <div class="tool-item">Calendly</div>
+                <div class="tool-item">Notion</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">What Clients Say</h2>
+            <div class="testimonial">
+                <p>"Rosette has been exceptional in her efforts doing web research and finding information for us. She is able to deliver expected results with ease. Highly recommend!"</p>
+            </div>
+            <div class="testimonial">
+                <p>"Great job on all of your work Rosette! You have completed all of the projects that we assigned on time, accurately, and diligently."</p>
+            </div>
+            <div class="testimonial">
+                <p>"Rosette is the best. I have worked with her in the past and will continue to work with her every chance I get."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Work Together</h2>
+            <p class="hero-description" style="margin: 2rem auto;">
+                Ready to elevate your marketing efforts? I'm available for virtual assistance, 
+                lead generation, email marketing, and social media management projects.
+            </p>
+            <div class="contact-info">
+                <p>📧 <a href="mailto:RFD1222@GMAIL.COM">RFD1222@GMAIL.COM</a></p>
+                <p style="margin-top: 1rem;">📍 Taguig City, Metro Manila, Philippines</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Rosette Dizon. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
